@@ -1,0 +1,68 @@
+{
+  "class": "DepictionTabView",
+  "tintColor": "#F58A2E",
+  "header": {
+    "class": "DepictionHeaderView",
+    "title": "熄屏幻术 FadeCraft",
+    "subtitle": "十六种熄屏 / 锁屏动画，每种可单独调参",
+    "icon": "icon.png"
+  },
+  "tabs": [
+    {
+      "class": "DepictionStackView",
+      "tabname": "详情",
+      "views": [
+        {
+          "class": "DepictionScreenshotsView",
+          "itemCornerRadius": 8,
+          "itemSize": "{160, 347}",
+          "screenshots": [
+            { "url": "screenshots/1.jpg", "accessibilityText": "设置主页面" },
+            { "url": "screenshots/2.jpg", "accessibilityText": "动画效果列表" },
+            { "url": "screenshots/3.jpg", "accessibilityText": "熄屏动画效果预览" },
+            { "url": "screenshots/4.jpg", "accessibilityText": "效果参数调节" },
+            { "url": "screenshots/5.jpg", "accessibilityText": "锁屏播放效果" },
+            { "url": "screenshots/6.jpg", "accessibilityText": "锁屏动画截图" }
+          ]
+        },
+        {
+          "class": "DepictionSubheaderView",
+          "title": "碎屏、像素消散、百叶窗、信号故障、CRT 关机、竖条翻牌、旋涡吸入、灰烬升腾、风沙吹散、条带垂落、波纹扭曲、方块散开、螺旋甩出、漆皮剥落、灯管熄灭、烟尘飘散，共 16 种熄屏动画，可在「动画效果」里勾选参与随机的效果。",
+          "useBoldText": false
+        },
+        {
+          "class": "DepictionMarkdownView",
+          "markdown": "### 功能\n- 锁屏时播放所选的熄屏动画，可随机播放\n- 每种效果都能单独调整参数（条数、时长、力度等）\n- 低电量模式下可自动停用\n- 支持「测试动画（不熄屏）」，不锁屏也能预览效果\n- 关掉「启用动画」即恢复系统默认的淡出效果"
+        },
+        {
+          "class": "DepictionSeparatorView"
+        },
+        {
+          "class": "DepictionTableTextView",
+          "title": "版本",
+          "text": "1.0.3"
+        },
+        {
+          "class": "DepictionTableTextView",
+          "title": "作者",
+          "text": "7513"
+        },
+        {
+          "class": "DepictionTableTextView",
+          "title": "支持系统",
+          "text": "iOS 16（roothide / rootless）"
+        }
+      ]
+    },
+    {
+      "class": "DepictionStackView",
+      "tabname": "更新日志",
+      "views": [
+        {
+          "class": "DepictionMarkdownView",
+          "markdown": "#### 1.0.3\n- 优化锁屏动画的播放稳定性，新增几种动画效果名称与说明\n\n#### 1.0.2\n- 效果名称改为更贴切的叫法：像素消散、信号故障、竖条翻牌等\n\n#### 1.0.1\n- 首个版本：16 种熄屏动画，可单独调参"
+        }
+      ]
+    }
+  ]
+}

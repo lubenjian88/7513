@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>熄屏幻术 FadeCraft</title>
+<style>
+:root { color-scheme: light dark; --ink: #1f232b; --dim: #6b7280; --page: #f2f2f7; --card: #ffffff; --accent: #f58a2e; }
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #f2f2f7; --dim: #9ca3af; --page: #000000; --card: #1c1c1e; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 24px 16px 48px; background: var(--page); color: var(--ink);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+}
+main { max-width: 720px; margin: 0 auto; }
+header { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
+header img { width: 72px; height: 72px; border-radius: 16px; flex: none; }
+header h1 { margin: 0; font-size: 22px; line-height: 1.25; }
+header p { margin: 2px 0 0; color: var(--dim); font-size: 14px; }
+.shots { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0 12px; scroll-snap-type: x mandatory; }
+.shots img {
+  height: min(64vh, 520px); width: auto; border-radius: 14px; flex: none;
+  scroll-snap-align: start; box-shadow: 0 6px 20px rgba(0,0,0,0.12); background: var(--card);
+}
+section { background: var(--card); border-radius: 16px; padding: 4px 16px; margin-bottom: 14px; }
+h2 { font-size: 15px; letter-spacing: 0.02em; color: var(--dim); margin: 18px 0 6px; font-weight: 600; }
+ul { margin: 8px 0; padding-left: 20px; }
+li { margin: 4px 0; }
+dl { margin: 0; }
+.row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.18); }
+.row:last-child { border-bottom: 0; }
+.row dt { color: var(--dim); }
+.row dd { margin: 0; text-align: right; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.tag { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); border-radius: 8px; padding: 3px 8px; font-size: 13px; }
+h3 { font-size: 16px; margin: 12px 0 4px; }
+footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img src="icon.png" alt="">
+  <div>
+    <h1>熄屏幻术 FadeCraft</h1>
+    <p>十六种熄屏 / 锁屏动画，每种可单独调参</p>
+  </div>
+</header>
+
+<div class="shots">
+  <img src="screenshots/1.jpg" alt="设置主页面">
+  <img src="screenshots/2.jpg" alt="动画效果列表">
+  <img src="screenshots/3.jpg" alt="熄屏动画效果预览">
+  <img src="screenshots/4.jpg" alt="效果参数调节">
+  <img src="screenshots/5.jpg" alt="锁屏播放效果">
+  <img src="screenshots/6.jpg" alt="锁屏动画截图">
+</div>
+
+<h2>截图</h2>
+<section>
+  <div class="tags">
+    <span class="tag">碎屏</span><span class="tag">像素消散</span><span class="tag">百叶窗</span>
+    <span class="tag">信号故障</span><span class="tag">CRT 关机</span><span class="tag">竖条翻牌</span>
+    <span class="tag">旋涡吸入</span><span class="tag">灰烬升腾</span><span class="tag">风沙吹散</span>
+    <span class="tag">条带垂落</span><span class="tag">波纹扭曲</span><span class="tag">方块散开</span>
+    <span class="tag">螺旋甩出</span><span class="tag">漆皮剥落</span><span class="tag">灯管熄灭</span>
+    <span class="tag">烟尘飘散</span>
+  </div>
+</section>
+
+<h2>功能</h2>
+<section>
+  <ul>
+    <li>锁屏时播放所选熄屏动画，可随机播放</li>
+    <li>每种效果都能单独调整参数（条数、时长、力度等）</li>
+    <li>低电量模式下可自动停用</li>
+    <li>支持「测试动画（不熄屏）」，不锁屏也能预览</li>
+    <li>关掉「启用动画」即恢复系统默认的淡出效果</li>
+  </ul>
+</section>
+
+<h2>信息</h2>
+<section>
+  <dl>
+    <div class="row"><dt>版本</dt><dd>1.0.3</dd></div>
+    <div class="row"><dt>作者</dt><dd>7513</dd></div>
+    <div class="row"><dt>标识</dt><dd>com.cracklock.7513</dd></div>
+    <div class="row"><dt>支持系统</dt><dd>iOS 16（roothide / rootless）</dd></div>
+  </dl>
+</section>
+
+<h2>更新日志</h2>
+<section>
+  <h3>1.0.3</h3>
+  <p>优化锁屏动画的播放稳定性，完善动画效果名称与说明。</p>
+  <h3>1.0.2</h3>
+  <p>效果名称改为更贴切的叫法：像素消散、信号故障、竖条翻牌等。</p>
+  <h3>1.0.1</h3>
+  <p>首个版本：16 种熄屏动画，可单独调参。</p>
+</section>
+
+<footer>lubenjian88/7513</footer>
+</main>
+</body>
+</html>
