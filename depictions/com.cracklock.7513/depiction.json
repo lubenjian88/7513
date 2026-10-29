@@ -32,6 +32,10 @@
           "markdown": "### 功能\n- 锁屏时播放所选的熄屏动画，可随机播放\n- 每种效果都能单独调整参数（条数、时长、力度等）\n- 低电量模式下可自动停用\n- 支持「测试动画（不熄屏）」，不锁屏也能预览效果\n- 关掉「启用动画」即恢复系统默认的淡出效果"
         },
         {
+          "class": "DepictionMarkdownView",
+          "markdown": "[**关注作者抖音 →**](https://v.douyin.com/7IfRQAa4kos/)"
+        },
+        {
           "class": "DepictionSeparatorView"
         },
         {
