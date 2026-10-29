@@ -52,6 +52,14 @@ xz -9e -c "$work_dir/Packages" > "$work_dir/Packages.xz"
 mkdir -p "$work_dir/indexes"
 cp "$work_dir/Packages" "$work_dir/Packages.xz" "$work_dir/indexes/"
 
+# Architectures come from the packages, so Release never advertises one the
+# repository has nothing for. The fallback keeps an empty source valid.
+architectures="$(awk '/^Architecture: /{print $2}' "$work_dir/Packages" | sort -u | tr '\n' ' ')"
+architectures="${architectures% }"
+if [[ -z "$architectures" ]]; then
+  architectures="iphoneos-arm64 iphoneos-arm64e"
+fi
+
 # Release is written beside the indexes, never among them, so it does
 # not hash itself.
 apt-ftparchive \
@@ -60,16 +68,34 @@ apt-ftparchive \
   -o APT::FTPArchive::Release::Suite="stable" \
   -o APT::FTPArchive::Release::Version="1.0" \
   -o APT::FTPArchive::Release::Codename="$name" \
-  -o APT::FTPArchive::Release::Architectures="iphoneos-arm iphoneos-arm64 iphoneos-arm64e" \
+  -o APT::FTPArchive::Release::Architectures="$architectures" \
   -o APT::FTPArchive::Release::Components="main" \
   -o APT::FTPArchive::Release::Description="Packages from $owner" \
   release "$work_dir/indexes" > "$work_dir/Release"
+
+# Signing is optional. Without RELEASE_SIGNING_KEY the source builds and works
+# as before, but clients show it as unverified. Both signatures are written
+# beside Release; clients accept either InRelease or Release + Release.gpg.
+if [[ -n "${RELEASE_SIGNING_KEY:-}" ]]; then
+  if ! command -v gpg >/dev/null 2>&1; then
+    echo "RELEASE_SIGNING_KEY is set but gpg is not installed." >&2
+    exit 69
+  fi
+  gpg_options=(--batch --yes --local-user "$RELEASE_SIGNING_KEY")
+  if [[ -n "${RELEASE_SIGNING_PASSPHRASE:-}" ]]; then
+    gpg_options+=(--pinentry-mode loopback --passphrase "$RELEASE_SIGNING_PASSPHRASE")
+  fi
+  gpg "${gpg_options[@]}" --armor --detach-sign \
+    --output "$work_dir/Release.gpg" "$work_dir/Release"
+  gpg "${gpg_options[@]}" --clearsign \
+    --output "$work_dir/InRelease" "$work_dir/Release"
+fi
 
 if ((${#packages[@]} > 0)); then
   mkdir -p "$site_dir/debs"
   cp "${packages[@]}" "$site_dir/debs/"
 fi
-for file in index.html CydiaIcon.png sileo-featured.json; do
+for file in index.html CydiaIcon.png SileoIcon.png sileo-featured.json; do
   if [[ -f "$file" ]]; then
     cp "$file" "$site_dir/"
   fi
@@ -87,6 +113,11 @@ if [[ -d depictions ]]; then
   cp -R depictions "$site_dir/depictions"
 fi
 cp "$work_dir/Packages" "$work_dir/Packages.xz" "$work_dir/Release" "$site_dir/"
+for file in Release.gpg InRelease; do
+  if [[ -f "$work_dir/$file" ]]; then
+    cp "$work_dir/$file" "$site_dir/"
+  fi
+done
 # Pages runs no Jekyll over the site.
 touch "$site_dir/.nojekyll"
 

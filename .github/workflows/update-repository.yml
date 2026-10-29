@@ -8,8 +8,9 @@ on:
       - ".github/workflows/update-repository.yml"
       - "debs/**"
       - "depictions/**"
-      - "scripts/update-repository.sh"
+      - "scripts/**"
       - "CydiaIcon.png"
+      - "SileoIcon.png"
       - "index.html"
       - "sileo-featured.json"
   workflow_dispatch:
@@ -24,6 +25,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Optional release signing. Add GPG_PRIVATE_KEY (an ASCII-armored secret
+    # key) and GPG_KEY_ID to the repository secrets to turn it on; without
+    # them the source builds exactly as before, just unsigned.
+    env:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -31,17 +39,31 @@ jobs:
       - name: Install repository tools
         run: |
           sudo apt-get update
-          sudo apt-get install --yes apt-utils xz-utils qrencode
+          sudo apt-get install --yes apt-utils xz-utils qrencode gnupg
 
       - name: Configure GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
+
+      - name: Import release signing key
+        if: env.GPG_PRIVATE_KEY != ''
+        run: printf '%s' "$GPG_PRIVATE_KEY" | gpg --batch --import
+
+      # Fails the build on a depiction that points at a deleted screenshot, a
+      # version the packages no longer have, or a .deb whose metadata
+      # disagrees with its own file name.
+      - name: Validate repository contents
+        env:
+          SOURCE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python3 scripts/validate.py
 
       - name: Build repository
         env:
           REPOSITORY_NAME: ${{ github.event.repository.name }}
           REPOSITORY_OWNER: ${{ github.repository_owner }}
           SOURCE_URL: ${{ steps.pages.outputs.base_url }}
+          RELEASE_SIGNING_KEY: ${{ env.GPG_KEY_ID }}
+          RELEASE_SIGNING_PASSPHRASE: ${{ env.GPG_PASSPHRASE }}
         run: ./scripts/update-repository.sh
 
       - name: Upload GitHub Pages artifact

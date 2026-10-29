@@ -1,0 +1,11 @@
+# Keep scripts and indexes byte-identical on every platform; a CRLF
+# shebang stops the workflow before it starts.
+*.sh text eol=lf
+*.py text eol=lf
+Packages text eol=lf
+Release text eol=lf
+
+# Payloads and images stay untouched.
+*.deb binary
+*.png binary
+*.jpg binary
