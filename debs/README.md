@@ -17,6 +17,19 @@ Section: Tweaks
 ```
 
 `Section` is the package's category (Tweaks, Applications, Utilities,
-Themes…); the index refuses a package without it. `Depiction`,
-`SileoDepiction` and `Icon` may point into `depictions/<package id>/`.
-Rootless packages are `iphoneos-arm64`, roothide ones `iphoneos-arm64e`.
+Themes…); the index refuses a package without it. Rootless packages are
+`iphoneos-arm64`, roothide ones `iphoneos-arm64e`.
+
+These optional fields make the package show its page in a client instead of a
+plain description block. They want absolute URLs, not paths:
+
+```debcontrol
+Depiction: https://lubenjian88.github.io/7513/depictions/com.example.tweak/
+SileoDepiction: https://lubenjian88.github.io/7513/depictions/com.example.tweak/depiction.json
+Icon: https://lubenjian88.github.io/7513/depictions/com.example.tweak/icon.jpg
+Homepage: https://lubenjian88.github.io/7513/
+```
+
+`scripts/validate.py` warns when a package with a `depictions/<package id>/`
+folder declares none of them, fails when the URLs sit outside the address Pages
+serves, and fails when the depiction does not show the newest version.
