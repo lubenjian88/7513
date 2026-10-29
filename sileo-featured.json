@@ -2,5 +2,12 @@
   "class": "FeaturedBannersView",
   "itemSize": "{263, 148}",
   "itemCornerRadius": 10,
-  "banners": []
+  "banners": [
+    {
+      "url": "https://lubenjian88.github.io/7513/depictions/com.cracklock.7513/banner.png",
+      "title": "熄屏幻术 FadeCraft",
+      "package": "com.cracklock.7513",
+      "hideShadow": false
+    }
+  ]
 }
