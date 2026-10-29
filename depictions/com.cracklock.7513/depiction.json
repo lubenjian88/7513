@@ -19,10 +19,7 @@
           "screenshots": [
             { "url": "screenshots/1.jpg", "accessibilityText": "设置主页面" },
             { "url": "screenshots/2.jpg", "accessibilityText": "动画效果列表" },
-            { "url": "screenshots/3.jpg", "accessibilityText": "熄屏动画效果预览" },
-            { "url": "screenshots/4.jpg", "accessibilityText": "效果参数调节" },
-            { "url": "screenshots/5.jpg", "accessibilityText": "锁屏播放效果" },
-            { "url": "screenshots/6.jpg", "accessibilityText": "锁屏动画截图" }
+            { "url": "screenshots/3.jpg", "accessibilityText": "熄屏动画效果预览" }
           ]
         },
         {
@@ -40,7 +37,7 @@
         {
           "class": "DepictionTableTextView",
           "title": "版本",
-          "text": "1.0.3"
+          "text": "1.0.4"
         },
         {
           "class": "DepictionTableTextView",
@@ -49,8 +46,13 @@
         },
         {
           "class": "DepictionTableTextView",
+          "title": "标识",
+          "text": "com.cracklock.7513"
+        },
+        {
+          "class": "DepictionTableTextView",
           "title": "支持系统",
-          "text": "iOS 16（roothide / rootless）"
+          "text": "iOS 15 – 17.3.1（roothide / rootless）"
         }
       ]
     },
@@ -60,7 +62,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "#### 1.0.3\n- 优化锁屏动画的播放稳定性，新增几种动画效果名称与说明\n\n#### 1.0.2\n- 效果名称改为更贴切的叫法：像素消散、信号故障、竖条翻牌等\n\n#### 1.0.1\n- 首个版本：16 种熄屏动画，可单独调参"
+          "markdown": "#### 1.0.4\n- 设置界面重构：「动画效果」列表与「参数调节」拆分为两个独立页面，来回切换保留滚动位置\n- 锁屏窗口改为按当前 UIWindowScene 创建，改善多场景下的稳定性\n\n#### 1.0.3\n- 修复 SpringBoard 内存持续增长导致的卡顿、锁屏后无动画\n- 新增动画效果白名单随机播放\n\n#### 1.0.2\n- 修复横屏；新增随机效果\n\n#### 1.0.1\n- 首个版本：16 种熄屏动画，可单独调参"
         }
       ]
     }

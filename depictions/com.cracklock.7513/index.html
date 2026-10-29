@@ -49,16 +49,14 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
   </div>
 </header>
 
+<h2>截图</h2>
 <div class="shots">
   <img src="screenshots/1.jpg" alt="设置主页面">
   <img src="screenshots/2.jpg" alt="动画效果列表">
   <img src="screenshots/3.jpg" alt="熄屏动画效果预览">
-  <img src="screenshots/4.jpg" alt="效果参数调节">
-  <img src="screenshots/5.jpg" alt="锁屏播放效果">
-  <img src="screenshots/6.jpg" alt="锁屏动画截图">
 </div>
 
-<h2>截图</h2>
+<h2>效果</h2>
 <section>
   <div class="tags">
     <span class="tag">碎屏</span><span class="tag">像素消散</span><span class="tag">百叶窗</span>
@@ -84,17 +82,19 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
 <h2>信息</h2>
 <section>
   <dl>
-    <div class="row"><dt>版本</dt><dd>1.0.3</dd></div>
+    <div class="row"><dt>版本</dt><dd>1.0.4</dd></div>
     <div class="row"><dt>作者</dt><dd>7513</dd></div>
     <div class="row"><dt>标识</dt><dd>com.cracklock.7513</dd></div>
-    <div class="row"><dt>支持系统</dt><dd>iOS 16（roothide / rootless）</dd></div>
+    <div class="row"><dt>支持系统</dt><dd>iOS 15 – 17.3.1（roothide / rootless）</dd></div>
   </dl>
 </section>
 
 <h2>更新日志</h2>
 <section>
+  <h3>1.0.4</h3>
+  <p>设置界面重构：「动画效果」列表与「参数调节」拆分为两个独立页面，来回切换保留滚动位置；锁屏窗口改为按当前 UIWindowScene 创建，改善多场景下的稳定性。</p>
   <h3>1.0.3</h3>
-  <p>修复SpringBoard内存暴涨问题 导致玩着玩着转圈圈、锁屏页面没解锁状态没动画。新增动画效果白名单随机播放。</p>
+  <p>修复 SpringBoard 内存持续增长导致的卡顿、锁屏后无动画。新增动画效果白名单随机播放。</p>
   <h3>1.0.2</h3>
   <p>修复横屏，新增随机效果。</p>
   <h3>1.0.1</h3>
