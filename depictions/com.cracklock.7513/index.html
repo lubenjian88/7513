@@ -5,37 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>熄屏幻术 FadeCraft</title>
 <style>
-:root { color-scheme: light dark; --ink: #1f232b; --dim: #6b7280; --page: #f2f2f7; --card: #ffffff; --accent: #f58a2e; }
+:root { color-scheme: light dark; --ink: #1f232b; --dim: #6b7280; --page: #f2f2f7; --card: #ffffff; --accent: #e8901a; --line: rgba(128,128,128,0.18); }
 @media (prefers-color-scheme: dark) {
   :root { --ink: #f2f2f7; --dim: #9ca3af; --page: #000000; --card: #1c1c1e; }
 }
 * { box-sizing: border-box; }
 body {
   margin: 0; padding: 24px 16px 48px; background: var(--page); color: var(--ink);
-  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
 }
 main { max-width: 720px; margin: 0 auto; }
-header { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
-header img { width: 72px; height: 72px; border-radius: 16px; flex: none; }
+header { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+header img { width: 76px; height: 76px; border-radius: 18px; flex: none; box-shadow: 0 6px 18px rgba(0,0,0,0.22); }
 header h1 { margin: 0; font-size: 22px; line-height: 1.25; }
-header p { margin: 2px 0 0; color: var(--dim); font-size: 14px; }
-.shots { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0 12px; scroll-snap-type: x mandatory; }
-.shots img {
-  height: min(64vh, 520px); width: auto; border-radius: 14px; flex: none;
-  scroll-snap-align: start; box-shadow: 0 6px 20px rgba(0,0,0,0.12); background: var(--card);
-}
-section { background: var(--card); border-radius: 16px; padding: 4px 16px; margin-bottom: 14px; }
-h2 { font-size: 15px; letter-spacing: 0.02em; color: var(--dim); margin: 18px 0 6px; font-weight: 600; }
+header p { margin: 3px 0 0; color: var(--dim); font-size: 14px; }
+.badge { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 15%, transparent); }
+.shots { display: flex; gap: 12px; overflow-x: auto; padding: 6px 0 14px; scroll-snap-type: x mandatory; }
+.shots img { height: min(64vh, 520px); width: auto; border-radius: 14px; flex: none; scroll-snap-align: start; box-shadow: 0 6px 20px rgba(0,0,0,0.12); background: var(--card); }
+section { background: var(--card); border-radius: 16px; padding: 6px 16px; margin-bottom: 14px; }
+h2 { font-size: 14px; letter-spacing: 0.06em; color: var(--dim); margin: 20px 0 6px; font-weight: 600; }
 ul { margin: 8px 0; padding-left: 20px; }
-li { margin: 4px 0; }
+li { margin: 5px 0; }
 dl { margin: 0; }
-.row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.18); }
+.row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
 .row:last-child { border-bottom: 0; }
 .row dt { color: var(--dim); }
 .row dd { margin: 0; text-align: right; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
-.tag { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); border-radius: 8px; padding: 3px 8px; font-size: 13px; }
-h3 { font-size: 16px; margin: 12px 0 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+.tag { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); border-radius: 8px; padding: 4px 9px; font-size: 13px; }
+.tag.new { background: var(--accent); color: #fff; font-weight: 600; }
+h3 { font-size: 15px; margin: 14px 0 4px; }
+h3 span { font-weight: 400; color: var(--dim); font-size: 13px; margin-left: 6px; }
+p.note { margin: 6px 0 10px; color: var(--dim); font-size: 14px; }
 a.link { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 0; color: var(--accent); text-decoration: none; font-weight: 600; }
 a.link .to { color: var(--dim); font-weight: 400; font-size: 14px; }
 footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22px; }
@@ -44,17 +45,18 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
 <body>
 <main>
 <header>
-  <img src="icon.jpg" alt="">
+  <img src="icon.png" alt="">
   <div>
     <h1>熄屏幻术 FadeCraft</h1>
-    <p>十六种熄屏 / 锁屏动画，每种可单独调参</p>
+    <p>18 种熄屏 / 锁屏动画，每种可单独调参</p>
+    <span class="badge">v1.0.5</span>
   </div>
 </header>
 
 <h2>截图</h2>
 <div class="shots">
   <img src="screenshots/1.jpg" alt="设置主页面">
-  <img src="screenshots/2.jpg" alt="动画效果列表">
+  <img src="screenshots/2.jpg" alt="动画效果多选">
   <img src="screenshots/3.jpg" alt="熄屏动画效果预览">
 </div>
 
@@ -67,7 +69,20 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
     <span class="tag">条带垂落</span><span class="tag">波纹扭曲</span><span class="tag">方块散开</span>
     <span class="tag">螺旋甩出</span><span class="tag">漆皮剥落</span><span class="tag">灯管熄灭</span>
     <span class="tag">烟尘飘散</span>
+    <span class="tag new">柏林溶解</span><span class="tag new">灭霸响指</span>
   </div>
+</section>
+
+<h2>功能</h2>
+<section>
+  <ul>
+    <li>按电源键的瞬间，把真实画面打碎、吹散或溶解</li>
+    <li>可勾选多种效果，每次熄屏随机播放（不会连续重复）</li>
+    <li>每种效果都能单独调整：时长、颗粒大小、力度、条数</li>
+    <li>颗粒最细可到 2 px，接近像素级溶解</li>
+    <li>支持「测试动画（不熄屏）」，不锁屏也能预览</li>
+    <li>低电量模式下可自动停用；关掉开关即恢复系统淡出</li>
+  </ul>
 </section>
 
 <h2>关注</h2>
@@ -78,21 +93,10 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
   </a>
 </section>
 
-<h2>功能</h2>
-<section>
-  <ul>
-    <li>锁屏时播放所选熄屏动画，可随机播放</li>
-    <li>每种效果都能单独调整参数（条数、时长、力度等）</li>
-    <li>低电量模式下可自动停用</li>
-    <li>支持「测试动画（不熄屏）」，不锁屏也能预览</li>
-    <li>关掉「启用动画」即恢复系统默认的淡出效果</li>
-  </ul>
-</section>
-
 <h2>信息</h2>
 <section>
   <dl>
-    <div class="row"><dt>版本</dt><dd>1.0.4</dd></div>
+    <div class="row"><dt>版本</dt><dd>1.0.5</dd></div>
     <div class="row"><dt>作者</dt><dd>7513</dd></div>
     <div class="row"><dt>标识</dt><dd>com.cracklock.7513</dd></div>
     <div class="row"><dt>支持系统</dt><dd>iOS 15 – 17.3.1（roothide / rootless）</dd></div>
@@ -101,14 +105,24 @@ footer { text-align: center; color: var(--dim); font-size: 13px; margin-top: 22p
 
 <h2>更新日志</h2>
 <section>
+  <h3>1.0.5<span>最新</span></h3>
+  <ul>
+    <li>新增「柏林溶解」：逐像素溶解，颗粒最细 2 px</li>
+    <li>新增「灭霸响指」：从右下角扫过，化灰后随风飘散</li>
+    <li>「动画效果」改为多选，勾选多种后随机播放</li>
+    <li>参数调节拆成两级页面，每种效果独立参数</li>
+    <li>修复熄屏后内存持续增长</li>
+    <li>修复锁屏未解锁时不播放动画</li>
+    <li>优化按下电源键到动画开始的延迟</li>
+  </ul>
   <h3>1.0.4</h3>
-  <p>「动画效果」列表与「参数调节」拆分为两个独立页面。</p>
+  <p class="note">「动画效果」列表与「参数调节」拆分为两个独立页面。</p>
   <h3>1.0.3</h3>
-  <p>修复 SpringBoard 内存持续增长导致的卡顿、锁屏后无动画。新增动画效果白名单随机播放。</p>
+  <p class="note">修复 SpringBoard 内存持续增长导致的卡顿、锁屏后无动画。新增动画效果白名单随机播放。</p>
   <h3>1.0.2</h3>
-  <p>修复横屏，新增随机效果。</p>
+  <p class="note">修复横屏，新增随机效果。</p>
   <h3>1.0.1</h3>
-  <p>首个版本：16 种熄屏动画，可单独调参。</p>
+  <p class="note">首个版本：16 种熄屏动画，可单独调参。</p>
 </section>
 
 <footer>lubenjian88/7513</footer>
