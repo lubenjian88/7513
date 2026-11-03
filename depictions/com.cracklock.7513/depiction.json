@@ -19,7 +19,7 @@
           "screenshots": [
             { "url": "screenshots/1.jpg", "accessibilityText": "设置主页面" },
             { "url": "screenshots/2.jpg", "accessibilityText": "动画效果多选" },
-            { "url": "screenshots/3.jpg", "accessibilityText": "熄屏动画效果预览" }
+            { "url": "screenshots/3.jpg", "accessibilityText": "插件形象" }
           ]
         },
         {
